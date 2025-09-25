@@ -1,0 +1,17 @@
+### Summary Report
+
+**Approach to Tagging:**
+
+My approach to tagging the free-text data was to first create a clean and structured taxonomy from the 'Taxonomy' sheet. I loaded both the 'Task' and 'Taxonomy' sheets into separate pandas DataFrames. I noticed a data quality issue in the 'Taxonomy' sheet where the 'Symptom Condition' column had a trailing space, which I corrected.
+
+I then created mapping dictionaries from the 'Taxonomy' DataFrame for each of the five fields: `Root Cause`, `Symptom Condition`, `Symptom Component`, `Fix Condition`, and `Fix Component`. These dictionaries provided a quick and efficient way to look up the predefined categories.
+
+For each row in the main dataset, I developed a set of functions to tag the corresponding fields. Each function would first check if a tag was already present. If not, it would take the free-text from the relevant column (`Complaint`, `Cause`, or `Correction`), convert it to lowercase, and then iterate through the respective taxonomy dictionary to find a matching keyword. If a match was found, the corresponding tag was applied. If no match was found, the field was left as `NaN`. This approach allowed me to systematically and logically apply the predefined taxonomy to the free-text data.
+
+**Potential Insights:**
+
+This tagged dataset can provide several valuable insights. By analyzing the frequency of different `Root Cause` categories, the business can identify the most common underlying issues with their products and prioritize areas for improvement in the manufacturing or design process.
+
+Furthermore, by analyzing the relationship between `Symptom Component` and `Root Cause`, the company can develop a more effective diagnostic process. For example, if a particular `Symptom Component` is frequently associated with a specific `Root Cause`, technicians can be trained to quickly identify the root cause based on the initial symptoms.
+
+Finally, the `Fix Condition` and `Fix Component` data can be used to optimize the repair process. By understanding which fixes are most effective for which problems, the company can improve its repair guidelines, reduce repair times, and ensure that the correct components are used for each repair. This can lead to increased customer satisfaction and reduced warranty costs.
